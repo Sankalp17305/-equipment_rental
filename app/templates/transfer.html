@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Transfer loan</h1>
+<p class="subtitle">
+  {{ booking.unit.type.name }} <span class="muted">({{ booking.unit.unit_code }})</span>
+  &nbsp;|&nbsp; currently with <strong>{{ booking.borrower.name }}</strong>
+  &nbsp;|&nbsp; due {{ booking.due_date }} (unchanged by the transfer)
+</p>
+
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
+
+<form method="post" action="/transfer/{{ booking.id }}" class="stacked-form">
+  <label>New borrower's name <input type="text" name="name" required></label>
+  <label>New borrower's college email <input type="email" name="email" required></label>
+  <label>Club / Department <input type="text" name="club"></label>
+  <button type="submit">Transfer loan</button>
+</form>
+<p class="muted small">
+  The item, due date and deposit record stay exactly as they were —
+  only who's responsible for returning it changes. Availability for
+  this item's dates is unaffected since it stays checked out throughout.
+</p>
+{% endblock %}

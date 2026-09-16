@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Book {{ type.name }}</h1>
+<p class="subtitle">{{ start }} → {{ end }} &nbsp;|&nbsp; Deposit: ₹{{ type.deposit_amount|int }} (refundable, minus any late fee)</p>
+
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
+
+<form method="post" action="/book" class="stacked-form">
+  <input type="hidden" name="type_id" value="{{ type.id }}">
+  <input type="hidden" name="start" value="{{ start }}">
+  <input type="hidden" name="end" value="{{ end }}">
+
+  <label>Your name <input type="text" name="name" required></label>
+  <label>College email <input type="email" name="email" required></label>
+  <label>Club / Department <input type="text" name="club"></label>
+
+  <button type="submit">Confirm booking &amp; collect deposit</button>
+</form>
+<p class="muted small">Max 3 items checked out per person at a time — keeps one club from grabbing all the gear.</p>
+{% endblock %}

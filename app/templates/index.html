@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Is it free?</h1>
+<p class="subtitle">Pick your dates to see what's actually available — no more guessing.</p>
+
+<form method="get" action="/" class="inline-form">
+  <label>From <input type="date" name="start" value="{{ start }}"></label>
+  <label>To <input type="date" name="end" value="{{ end }}"></label>
+  <button type="submit">Check</button>
+</form>
+
+<table>
+  <thead>
+    <tr><th>Item</th><th>Category</th><th>Available</th><th>Deposit</th><th>Late fee / day</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for row in summary %}
+    <tr>
+      <td>{{ row.type.name }}</td>
+      <td>{{ row.type.category }}</td>
+      <td>
+        <span class="{{ 'ok' if row.free > 0 else 'none' }}">
+          {{ row.free }} / {{ row.total }} free
+        </span>
+      </td>
+      <td>₹{{ row.type.deposit_amount|int }}</td>
+      <td>₹{{ row.type.late_fee_per_day|int }}</td>
+      <td>
+        {% if row.free > 0 %}
+        <a class="btn" href="/book?type_id={{ row.type.id }}&start={{ start }}&end={{ end }}">Book</a>
+        {% else %}
+        <span class="muted">Fully booked</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

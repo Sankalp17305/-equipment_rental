@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Currently checked out</h1>
+
+<table>
+  <thead>
+    <tr><th>Item</th><th>Borrower</th><th>Due</th><th>Status</th><th>Deposit</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for b in active %}
+    <tr class="{{ 'overdue-row' if b.id in overdue_ids else '' }}">
+      <td>{{ b.unit.type.name }} <span class="muted">({{ b.unit.unit_code }})</span></td>
+      <td>
+        {{ b.borrower.name }} <span class="muted">{{ b.borrower.club_or_dept or '' }}</span>
+        {% if b.transfer_count > 0 %}
+        <br><span class="muted small">transferred {{ b.transfer_count }}x (orig. {{ b.original_borrower.name }})</span>
+        {% endif %}
+      </td>
+      <td>{{ b.due_date }}</td>
+      <td>
+        {% if b.id in overdue_ids %}
+          <span class="badge-overdue">{{ b.days_overdue }} day(s) overdue</span>
+        {% else %}
+          <span class="badge-ok">on time</span>
+        {% endif %}
+      </td>
+      <td>₹{{ b.deposit_collected|int }}</td>
+      <td>
+        <form method="post" action="/return/{{ b.id }}" style="display:inline">
+          <button type="submit">Mark returned</button>
+        </form>
+        <a class="btn-secondary" href="/transfer/{{ b.id }}">Transfer</a>
+        {% if b.id in reminder_links %}
+        <a class="btn-secondary" href="{{ reminder_links[b.id] }}">Nudge</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6" class="muted">Nothing checked out right now.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

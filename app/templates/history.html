@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Return history</h1>
+<table>
+  <thead>
+    <tr><th>Item</th><th>Borrower</th><th>Returned</th><th>Late fee</th><th>Deposit refunded</th></tr>
+  </thead>
+  <tbody>
+    {% for b in returned %}
+    <tr>
+      <td>{{ b.unit.type.name }} ({{ b.unit.unit_code }})</td>
+      <td>{{ b.borrower.name }}</td>
+      <td>{{ b.returned_date }}</td>
+      <td>{{ '₹%d'|format(b.late_fee_charged) if b.late_fee_charged else '—' }}</td>
+      <td>₹{{ b.deposit_refunded|int }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5" class="muted">No returns logged yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

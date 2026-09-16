@@ -1,0 +1,56 @@
+:root {
+  --ink: #1b1f23;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --danger: #dc2626;
+  --ok: #16a34a;
+  --border: #e5e7eb;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--ink);
+  margin: 0;
+  background: #fafafa;
+}
+nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+nav a { color: var(--ink); text-decoration: none; }
+nav .brand { font-weight: 700; margin-right: auto; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
+h1 { margin-bottom: 0.25rem; }
+.subtitle { color: var(--muted); margin-top: 0; }
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; }
+th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); }
+th { color: var(--muted); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+.ok { color: var(--ok); font-weight: 600; }
+.none { color: var(--danger); font-weight: 600; }
+.muted { color: var(--muted); }
+.small { font-size: 0.85rem; }
+.btn, button, .btn-secondary {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.btn-secondary { background: #f59e0b; margin-left: 0.4rem; }
+.inline-form { display: flex; gap: 1rem; align-items: end; margin-top: 1rem; }
+.inline-form label { display: flex; flex-direction: column; font-size: 0.85rem; color: var(--muted); gap: 0.25rem; }
+.stacked-form { display: flex; flex-direction: column; gap: 0.9rem; max-width: 420px; margin-top: 1rem; }
+.stacked-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; }
+input { padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95rem; }
+.error { background: #fef2f2; color: var(--danger); padding: 0.7rem 1rem; border-radius: 6px; margin-top: 1rem; }
+.overdue-row { background: #fef2f2; }
+.badge-overdue { color: var(--danger); font-weight: 600; }
+.badge-ok { color: var(--ok); }
