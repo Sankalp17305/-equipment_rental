@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AV Room Tracker</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
   <nav>
-    <a href="/" class="brand">📷 AV Room Tracker</a>
-    <a href="/">Check Availability</a>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/history">History</a>
+    <a href="/" class="brand"><span class="brand-mark">AV</span><span>Room Tracker</span></a>
+    <div class="nav-links">
+      <a href="/">Availability</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/history">History</a>
+    </div>
   </nav>
   <main>
     {% block content %}{% endblock %}
