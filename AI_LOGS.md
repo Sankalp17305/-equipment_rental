@@ -616,10 +616,10 @@ The repository is clean and synchronized with `origin/main`.
 
 Made changes.
 
+#claude
 
 
-#CLAUDE
-
+Claude finished the response
 Dear Students,
 Welcome to the next level of Assessment of Auriga IT, the Round 2 — "Builder" Round.
 You must ensure that you are sitting at the same spot where you sat in Round-1, today morning.
@@ -717,4 +717,10 @@ requirements.txt
 AI_LOGS.md (still just the placeholder instructions — that one's on you to fill in with your real AI conversation)
 One thing worth double-checking on your end: since models.py changed (new columns), if you'd already run the app once and generated av_rental.db from the previous zip, delete that file and re-run python -m app.seed — SQLite won't auto-migrate the schema.
 
+
+
+
+
+
+#CLAUDE
 
